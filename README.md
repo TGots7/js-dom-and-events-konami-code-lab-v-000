@@ -9,9 +9,27 @@
 In `konami_code.js`, you'll notice that we've provided very little: well, just about nothing except -- what's that? If you open the file up in your text editor, you should see:
 ```js
 const code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]
-
+let index = 0;
 function init() {
-  // your code here
+
+// Keep track of index outside of the event handler.
+// This is the function that would be invoked by the event listener.
+document.body.addEventListener('keydown', function(e){
+  const key = parseInt(e.detail || e.which);
+
+  if (key === code[index]) {
+    index++;
+
+    if (index === code.length) {
+      alert("Hurray!");
+      index = 0;
+    }
+  } else {
+    index = 0;
+  }
+});
+
+
 }
 ```
 
